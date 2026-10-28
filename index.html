@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo dos Jogos | Para Todas as Plataformas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root {
+            --cor-principal: #6c5ce7;
+            --cor-destaque: #fdcb6e;
+            --cor-fundo: #0f0f23;
+            --cor-texto: #f0f0f0;
+            --cor-card: #1e1e35;
+        }
+        body { background: var(--cor-fundo); color: var(--cor-texto); line-height: 1.6; }
+        
+        /* Cabeçalho */
+        header { background: linear-gradient(135deg, var(--cor-principal), #a29bfe); padding: 2rem; text-align: center; }
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        
+        /* Navegação */
+        nav { background: #1a1a2e; padding: 1rem; position: sticky; top: 0; z-index: 100; }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+        nav a { color: var(--cor-texto); text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; transition: 0.3s; }
+        nav a:hover, nav a a.tela-atual { background: var(--cor-principal); color: white; }
+        
+        /* Conteúdo */
+        main { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .secao { margin-bottom: 3rem; }
+        .secao h2 { color: var(--cor-destaque); margin-bottom: 1.5rem; border-bottom: 2px solid var(--cor-principal); padding-bottom: 0.5rem; }
+        
+        /* Cards */
+        .grade-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--cor-card); border-radius: 12px; padding: 1.5rem; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { color: var(--cor-destaque); margin-bottom: 0.8rem; }
+        .card p { margin-bottom: 1rem; opacity: 0.85; }
+        .botao { display: inline-block; background: var(--cor-principal); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .botao:hover { background: #5549d3; }
+        
+        /* Rodapé */
+        footer { background: #1a1a2e; text-align: center; padding: 2rem; margin-top: 3rem; }
+        
+        /* Responsivo */
+        @media (max-width: 600px) {
+            nav ul { gap: 0.5rem; }
+            .card { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <h1>🎮 Mundo dos Jogos</h1>
+        <p>Seu guia para todas as plataformas — Mobile, PC, Consoles e mais!</p>
+    </header>
+
+    <!-- Menu -->
+    <nav>
+        <ul>
+            <li><a href="#inicio" class="tela-atual">Início</a></li>
+            <li><a href="#mobile">📱 Mobile</a></li>
+            <li><a href="#pc">💻 PC & Emuladores</a></li>
+            <li><a href="#consoles">🕹️ Consoles</a></li>
+            <li><a href="#dicas">⭐ Dicas</a></li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo -->
+    <main>
+        
+        <!-- Início -->
+        <section id="inicio" class="secao">
+            <h2>Bem-vindo(a)! 🎯</h2>
+            <p>Este é o seu espaço para descobrir, aprender e compartilhar tudo sobre jogos em qualquer plataforma. Começamos devagar e vamos crescendo juntos! 💛</p>
+            <br>
+            <p><strong>Em destaque:</strong> Pokémon GO, dicas de emuladores, configurações de PC e muito mais que você vai adicionar!</p>
+        </section>
+
+        <!-- Mobile -->
+        <section id="mobile" class="secao">
+            <h2>📱 Jogos Mobile</h2>
+            <div class="grade-cards">
+                <div class="card">
+                    <h3>Pokémon GO</h3>
+                    <p>Reides, contadores, eventos e dicas de como jogar bem de casa!</p>
+                    <a href="#" class="botao">Ver mais →</a>
+                </div>
+                <div class="card">
+                    <h3>Outros Jogos</h3>
+                    <p>Espaço para você adicionar seus jogos favoritos do celular.</p>
+                    <a href="#" class="botao">Em breve →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PC & Emuladores -->
+        <section id="pc" class="secao">
+            <h2>💻 PC & Emuladores</h2>
+            <div class="grade-cards">
+                <div class="card">
+                    <h3>MuMu Player</h3>
+                    <p>Como instalar, configurar, otimizar e recuperar máquinas virtuais!</p>
+                    <a href="#" class="botao">Ver dicas →</a>
+                </div>
+                <div class="card">
+                    <h3>Controles & Ajustes</h3>
+                    <p>Como conectar controles, otimizar o PC e resolver problemas comuns.</p>
+                    <a href="#" class="botao">Aprender →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Consoles -->
+        <section id="consoles" class="secao">
+            <h2>🕹️ Consoles <em>(em construção)</em></h2>
+            <p>Em breve: PlayStation, Xbox, Nintendo e tudo mais que você quiser incluir! 🚧</p>
+        </section>
+
+        <!-- Dicas -->
+        <section id="dicas" class="secao">
+            <h2>⭐ Dicas & Tutoriais</h2>
+            <div class="grade-cards">
+                <div class="card">
+                    <h3>Como Publicar o Site</h3>
+                    <p>Colocar tudo isso na internet de graça e para sempre!</p>
+                    <a href="#" class="botao">Próximos passos →</a>
+                </div>
+                <div class="card">
+                    <h3>Adicionar Mais Páginas</h3>
+                    <p>Crescer o site com seus jogos e dicas favoritos.</p>
+                    <a href="#" class="botao">Continuar →</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>🎮 Mundo dos Jogos — Feito por você, com carinho 💛</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">Crescendo um passo de cada vez ✨</p>
+    </footer>
+
+</body>
+</html>
