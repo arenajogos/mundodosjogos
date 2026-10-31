@@ -3,155 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arena Jogos | Para Todas as Plataformas</title>
+    <title>Arena Jogos — Jogos Online Grátis</title>
+
+    <!-- 🎮 Ícone na aba do navegador -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/870/870910.png" type="image/png">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
         :root {
-            --cor-principal: #6c5ce7;
-            --cor-destaque: #fdcb6e;
-            --cor-fundo: #0f0f23;
-            --cor-texto: #f0f0f0;
-            --cor-card: #1e1e35;
+            --fundo: #1a1b2e;
+            --fundo-card: #252742;
+            --destaque: #facc15;
+            --texto: #e0e7ff;
+            --botao: #6366f1;
+            --botao-ativo: #4f46e5;
+            --borda: #43467a;
         }
-        body { background: var(--cor-fundo); color: var(--cor-texto); line-height: 1.6; }
-        
-        /* Cabeçalho */
-        header { background: linear-gradient(135deg, var(--cor-principal), #a29bfe); padding: 2rem; text-align: center; }
-        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        header p { font-size: 1.1rem; opacity: 0.9; }
-        
-        /* Navegação */
-        nav { background: #1a1a2e; padding: 1rem; position: sticky; top: 0; z-index: 100; }
-        nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-        nav a { color: var(--cor-texto); text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; transition: 0.3s; }
-        nav a:hover, nav a.tela-atual { background: var(--cor-principal); color: white; }
-        
-        /* Conteúdo */
-        main { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
-        .secao { margin-bottom: 3rem; }
-        .secao h2 { color: var(--cor-destaque); margin-bottom: 1.5rem; border-bottom: 2px solid var(--cor-principal); padding-bottom: 0.5rem; }
-        
-        /* Cards */
-        .grade-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .card { background: var(--cor-card); border-radius: 12px; padding: 1.5rem; transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { color: var(--cor-destaque); margin-bottom: 0.8rem; }
-        .card p { margin-bottom: 1rem; opacity: 0.85; }
-        .botao { display: inline-block; background: var(--cor-principal); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        .botao:hover { background: #5549d3; }
-        
-        /* Contador */
-        .contador { text-align: center; margin: 2rem 0; padding: 1rem; background: #1e1e35; border-radius: 10px; }
-        
-        /* Rodapé */
-        footer { background: #1a1a2e; text-align: center; padding: 2rem; margin-top: 3rem; }
-        
-        /* Responsivo */
+        body { background: var(--fundo); color: var(--texto); min-height: 100vh; }
+
+        header {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        header p {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #e0e7ff;
+        }
+        .contador {
+            margin-top: 1rem;
+            display: inline-block;
+            background: rgba(0,0,0,0.25);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--destaque);
+        }
+
+        nav {
+            background: var(--fundo-card);
+            padding: 1rem;
+            border-bottom: 2px solid var(--borda);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        nav a {
+            color: var(--texto);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        nav a.ativo {
+            background: var(--botao);
+            color: white;
+        }
+        nav a:hover:not(.ativo) {
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .secao-titulo {
+            font-size: 1.3rem;
+            color: var(--destaque);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .secao-titulo:first-child { margin-top: 0; }
+
+        .categorias {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .categoria {
+            background: var(--fundo-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 3px solid var(--destaque);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .categoria:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+        }
+        .categoria h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .categoria p { font-size: 0.9rem; color: #94a3b8; }
+
+        .grade {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1.25rem;
+        }
+        .jogo {
+            background: var(--fundo-card);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .jogo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+            border-color: var(--botao);
+        }
+        .jogo a { color: inherit; text-decoration: none; display: block; }
+        .jogo-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+        .jogo-nome {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #94a3b8;
+            border-top: 1px solid var(--borda);
+            margin-top: 3rem;
+        }
+
         @media (max-width: 600px) {
-            nav ul { gap: 0.5rem; }
-            .card { padding: 1.2rem; }
+            .grade { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1rem; }
+            .jogo-img { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Cabeçalho -->
     <header>
         <h1>🎮 Arena Jogos</h1>
-        <p>Seu guia para todas as plataformas — Mobile, PC, Consoles e mais!</p>
+        <p>Os melhores jogos online, grátis e direto do navegador! 💛</p>
+        <div class="contador">👀 Visitantes: <span id="contador-numero">0</span></div>
     </header>
 
-    <!-- Menu -->
     <nav>
         <ul>
-            <li><a href="index.html" class="tela-atual">Início</a></li>
+            <li><a href="index.html" class="ativo">🏠 Início</a></li>
             <li><a href="mobile.html">📱 Mobile</a></li>
-            <li><a href="pc.html">💻 PC & Emuladores</a></li>
+            <li><a href="pc.html">💻 PC</a></li>
             <li><a href="consoles.html">🕹️ Consoles</a></li>
             <li><a href="dicas.html">⭐ Dicas</a></li>
         </ul>
     </nav>
 
-    <!-- Conteúdo -->
     <main>
-        
-        <!-- Início -->
-        <section id="inicio" class="secao">
-            <h2>Bem-vindo(a)! 🎯</h2>
-            <p>Este é o seu espaço para descobrir, aprender e compartilhar tudo sobre jogos em qualquer plataforma. Começamos devagar e vamos crescendo juntos! 💛</p>
-            <br>
-            <p><strong>Em destaque:</strong> Pokémon GO, dicas de emuladores, configurações de PC e muito mais!</p>
-        </section>
-
-        <!-- Mobile -->
-        <section id="mobile" class="secao">
-            <h2>📱 Jogos Mobile</h2>
-            <div class="grade-cards">
-                <div class="card">
-                    <h3>Pokémon GO</h3>
-                    <p>Reides, contadores, eventos e dicas de como jogar bem de casa!</p>
-                    <a href="mobile.html" class="botao">Ver mais →</a>
-                </div>
-                <div class="card">
-                    <h3>Outros Jogos</h3>
-                    <p>Espaço para você adicionar seus jogos favoritos do celular.</p>
-                    <a href="mobile.html" class="botao">Ver mais →</a>
-                </div>
+        <h2 class="secao-titulo">Explorar</h2>
+        <div class="categorias">
+            <div class="categoria" onclick="window.location.href='mobile.html'">
+                <h3>📱 Jogos Mobile</h3>
+                <p>Pokémon GO e mais</p>
             </div>
-        </section>
-
-        <!-- PC & Emuladores -->
-        <section id="pc" class="secao">
-            <h2>💻 PC & Emuladores</h2>
-            <div class="grade-cards">
-                <div class="card">
-                    <h3>MuMu Player</h3>
-                    <p>Como instalar, configurar, otimizar e recuperar máquinas virtuais!</p>
-                    <a href="pc.html" class="botao">Ver dicas →</a>
-                </div>
-                <div class="card">
-                    <h3>Controles & Ajustes</h3>
-                    <p>Como conectar controles, otimizar o PC e resolver problemas comuns.</p>
-                    <a href="pc.html" class="botao">Aprender →</a>
-                </div>
+            <div class="categoria" onclick="window.location.href='pc.html'">
+                <h3>💻 Jogos de PC</h3>
+                <p>Emuladores e diversão</p>
             </div>
-        </section>
-
-        <!-- Consoles -->
-        <section id="consoles" class="secao">
-            <h2>🕹️ Consoles</h2>
-            <div class="grade-cards">
-                <div class="card">
-                    <h3>PlayStation</h3>
-                    <p>Em breve: dicas, jogos recomendados e tutoriais!</p>
-                    <a href="consoles.html" class="botao">Em breve →</a>
-                </div>
-                <div class="card">
-                    <h3>Nintendo & Xbox</h3>
-                    <p>Tudo sobre os jogos de cada plataforma — em construção!</p>
-                    <a href="consoles.html" class="botao">Conferir →</a>
-                </div>
+            <div class="categoria" onclick="window.location.href='consoles.html'">
+                <h3>🕹️ Consoles</h3>
+                <p>PlayStation, Xbox e mais</p>
             </div>
-        </section>
-
-        <!-- Dicas -->
-        <section id="dicas" class="secao">
-            <h2>⭐ Dicas & Tutoriais</h2>
-            <div class="grade-cards">
-                <div class="card">
-                    <h3>Como Publicar o Site</h3>
-                    <p>Colocar tudo isso na internet de graça e para sempre!</p>
-                    <a href="dicas.html" class="botao">Ver passo a passo →</a>
-                </div>
-                <div class="card">
-                    <h3>Resolvendo Problemas</h3>
-                    <p>Dicas rápidas para quando algo não funciona como deveria.</p>
-                    <a href="dicas.html" class="botao">Aprender →</a>
-                </div>
+            <div class="categoria" onclick="window.location.href='dicas.html'">
+                <h3>⭐ Dicas</h3>
+                <p>Tutoriais e truques</p>
             </div>
-        </section>
+        </div>
 
-        <!-- Contador -->
-        <div class="contador">
-            <span style="font-size: 1.1rem; color: #fdcb6e;">👁️ Visitas ao site:</span>
-            <img src="https://visitorbadge.io/api/visitors?path=arenajogos-mundodosjogos&label=Total&countColor=%23fdcb6e&style=flat" alt="
+        <h2 class="secao-titulo">🔥 Jogos em Destaque</h2>
+        <div class="grade">
+            <!-- Jogos sem duplicatas -->
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/five-nights-at-freddys&nome=Five Nights at Freddy's">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #7c3aed, #4c1d95);">🐻</div>
+                    <div class="jogo-nome">Five Nights at Freddy's</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/subway-surfers&nome=Subway Surfers">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">🏃</div>
+                    <div class="jogo-nome">Subway Surfers</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/stick-war-legacy&nome=Stick War Legacy">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">⚔️</div>
+                    <div class="jogo-nome">Stick War Legacy</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/bad-piggies&nome=Bad Piggies">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #22c55e, #16a34a);">🐷</div>
+                    <div class="jogo-nome">Bad Piggies</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/offroad-outlaws&nome=Offroad Outlaws">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #ea580c, #c2410c);">🚙</div>
+                    <div class="jogo-nome">Offroad Outlaws</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/angry-birds-2&nome=Angry Birds 2">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #ef4444, #dc2626);">🐦</div>
+                    <div class="jogo-nome">Angry Birds 2</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/bus-simulator-ultimate&nome=Bus Simulator Ultimate">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #0d9488, #0f766e);">🚌</div>
+                    <div class="jogo-nome">Bus Simulator Ultimate</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/purble-place&nome=Purble Place">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #ec4899, #d946ef);">🎂</div>
+                    <div class="jogo-nome">Purble Place</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/free-kick-football-3d-soccer&nome=Futebol 3D">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #22c55e, #15803d);">⚽</div>
+                    <div class="jogo-nome">Futebol 3D</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/coach-bus-simulator&nome=Coach Bus Simulator">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">🚌</div>
+                    <div class="jogo-nome">Coach Bus Simulator</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/flat-zombies-defense-and-cleanup&nome=Flat Zombies">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #84cc16, #65a30d);">🧟</div>
+                    <div class="jogo-nome">Flat Zombies</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/banana-kong&nome=Banana Kong">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #facc15, #eab308);">🍌</div>
+                    <div class="jogo-nome">Banana Kong</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/shadow-fight-2&nome=Shadow Fight 2">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #4b5563, #1f2937);">👊</div>
+                    <div class="jogo-nome">Shadow Fight 2</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/street-racing-3d&nome=Street Racing 3D">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #f97316, #ea580c);">🏎️</div>
+                    <div class="jogo-nome">Street Racing 3D</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/ultimate-car-driving-simulator&nome=Car Driving Simulator">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">🚗</div>
+                    <div class="jogo-nome">Car Driving Simulator</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/evil-nun-horror-at-school&nome=Evil Nun">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #581c87, #3b0764);">😱</div>
+                    <div class="jogo-nome">Evil Nun</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/dr-panda-town-tales&nome=Dr. Panda">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #f472b6, #ec4899);">🐼</div>
+                    <div class="jogo-nome">Dr. Panda</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/vector-2&nome=Vector 2">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">🏃</div>
+                    <div class="jogo-nome">Vector 2</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/mr-meat-horror-escape-room&nome=Mr. Meat">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #991b1b, #7f1d1d);">🥩</div>
+                    <div class="jogo-nome">Mr. Meat</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/central-hospital-stories&nome=Central Hospital">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #22d3ee, #06b6d4);">🏥</div>
+                    <div class="jogo-nome">Central Hospital</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/my-town-hospital-doctor-game&nome=My Town Hospital">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #67e8f9, #22d3ee);">👩‍⚕️</div>
+                    <div class="jogo-nome">My Town Hospital</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/traffic-rider&nome=Traffic Rider">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #f59e0b, #d97706);">🏍️</div>
+                    <div class="jogo-nome">Traffic Rider</div>
+                </a>
+            </div>
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/chess-titans&nome=Chess Titans">
+                    <div class="jogo-img" style="background: linear-gradient(135deg, #a78bfa, #8b5cf6);">♟️</div>
+                    <div class="jogo-nome">Chess Titans</div>
+                </a>
+            </div>
+            <
