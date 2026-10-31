@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregando...</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
+        :root {
+            --fundo: #1a1b2e;
+            --fundo-card: #252742;
+            --destaque: #facc15;
+            --texto: #e0e7ff;
+            --botao: #6366f1;
+        }
+        body { background: var(--fundo); color: var(--texto); min-height: 100vh; display: flex; flex-direction: column; }
+        header { background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 1rem; display: flex; align-items: center; justify-content: space-between; }
+        header h1 { font-size: 1.3rem; color: white; }
+        .voltar { background: rgba(255,255,255,0.2); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .voltar:hover { background: rgba(255,255,255,0.3); }
+        .container { flex: 1; padding: 2rem 1rem; max-width: 1400px; margin: 0 auto; width: 100%; }
+        .jogo-nome { font-size: 1.5rem; color: var(--destaque); margin-bottom: 1.5rem; text-align: center; }
+        .jogo-iframe { width: 100%; height: 75vh; border: none; border-radius: 12px; background: var(--fundo-card); }
+        .carregando { text-align: center; padding: 3rem; font-size: 1.2rem; }
+        .carregando span { display: inline-block; animation: piscar 1s infinite; }
+        @keyframes piscar { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        footer { text-align: center; padding: 2rem; color: #94a3b8; border-top: 1px solid #43467a; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="voltar" onclick="history.back()">← Voltar</button>
+        <h1 id="titulo-jogo">Carregando...</h1>
+        <div></div>
+    </header>
+
+    <main class="container">
+        <h2 class="jogo-nome" id="nome-jogo">Abrindo o jogo...</h2>
+        <iframe id="iframe-jogo" class="jogo-iframe" src="" allowfullscreen></iframe>
+    </main>
+
+    <footer>
+        <p>🎮 Arena Jogos — Jogue direto no navegador, grátis!</p>
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const urlJogo = params.get('url');
+        const nomeJogo = params.get('nome') || 'Jogo';
+
+        document.getElementById('nome-jogo').textContent = nomeJogo;
+        document.getElementById('titulo-jogo').textContent = nomeJogo;
+
+        if (urlJogo) {
+            document.getElementById('iframe-jogo').src = urlJogo;
+        } else {
+            document.querySelector('.container').innerHTML = '<p style="text-align:center; color:#f87171; font-size:1.2rem;">⚠️ Jogo não encontrado!</p><p style="text-align:center; margin-top:1rem;"><a href="index.html" style="color:#facc15;">Voltar para a página inicial</a></p>';
+        }
+    </script>
+</body>
+</html>
