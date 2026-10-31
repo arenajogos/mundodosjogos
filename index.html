@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arena Jogos — Jogos Online Grátis</title>
 
-    <!-- Ícone do site: Controle de Videogame -->
+    <!-- Ícone: Controle de Videogame -->
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1036/1036440.png" type="image/png">
 
     <style>
@@ -25,4 +25,268 @@
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
             padding: 2rem 1rem;
             text-align: center;
-           <[SILENT_never_used_51bce0c785ca2f68081bfa7d91973934]>
+        }
+        header h1 {
+            font-size: 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        header p { margin-top: 0.5rem; font-size: 1rem; color: #e0e7ff; }
+        .contador {
+            margin-top: 1rem;
+            display: inline-block;
+            background: rgba(0,0,0,0.25);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--destaque);
+        }
+
+        nav {
+            background: var(--fundo-card);
+            padding: 1rem;
+            border-bottom: 2px solid var(--borda);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        nav a {
+            color: var(--texto);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        nav a.ativo { background: var(--botao); color: white; }
+        nav a:hover:not(.ativo) { background: rgba(99, 102, 241, 0.2); }
+
+        main { max-width: 1400px; margin: 0 auto; padding: 2rem 1rem; }
+
+        .secao-titulo {
+            font-size: 1.3rem;
+            color: var(--destaque);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .secao-titulo:first-child { margin-top: 0; }
+
+        .categorias {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .categoria {
+            background: var(--fundo-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 3px solid var(--destaque);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .categoria:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2); }
+        .categoria h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .categoria p { font-size: 0.9rem; color: #94a3b8; }
+
+        .grade {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.5rem;
+        }
+        .jogo {
+            background: var(--fundo-card);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .jogo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+            border-color: var(--botao);
+        }
+        .jogo a { color: inherit; text-decoration: none; display: block; }
+        .jogo-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            background: #2d2f4f;
+        }
+        .jogo-nome {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #94a3b8;
+            border-top: 1px solid var(--borda);
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 600px) {
+            .grade { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎮 Arena Jogos</h1>
+        <p>Os melhores jogos online, grátis e direto do navegador! 💛</p>
+        <div class="contador">👀 Visitantes: <span id="contador-numero">0</span></div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="ativo">🏠 Início</a></li>
+            <li><a href="mobile.html">📱 Mobile</a></li>
+            <li><a href="pc.html">💻 PC</a></li>
+            <li><a href="consoles.html">🕹️ Consoles</a></li>
+            <li><a href="dicas.html">⭐ Dicas</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2 class="secao-titulo">Explorar</h2>
+        <div class="categorias">
+            <div class="categoria" onclick="window.location.href='mobile.html'">
+                <h3>📱 Jogos Mobile</h3>
+                <p>Pokémon GO e mais</p>
+            </div>
+            <div class="categoria" onclick="window.location.href='pc.html'">
+                <h3>💻 Jogos de PC</h3>
+                <p>Emuladores e diversão</p>
+            </div>
+            <div class="categoria" onclick="window.location.href='consoles.html'">
+                <h3>🕹️ Consoles</h3>
+                <p>PlayStation, Xbox e mais</p>
+            </div>
+            <div class="categoria" onclick="window.location.href='dicas.html'">
+                <h3>⭐ Dicas</h3>
+                <p>Tutoriais e truques</p>
+            </div>
+        </div>
+
+        <h2 class="secao-titulo">🔥 Jogos em Destaque</h2>
+        <div class="grade">
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/stick-war-legacy&nome=Stick War Legacy">
+                    <img src="https://play-lh.googleusercontent.com/ANvVq3XzYJ5jO8aHdK7vZ9xW7vY9zX5bQ9xX7Z9lW8w=s512" alt="Stick War Legacy" class="jogo-img">
+                    <div class="jogo-nome">Stick War Legacy</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/subway-surfers&nome=Subway Surfers">
+                    <img src="https://play-lh.googleusercontent.com/Uo5J_2QfXzWbVqKzGtL9kGqXz9L9pQz9wX7Y9vZ8xQw=s512" alt="Subway Surfers" class="jogo-img">
+                    <div class="jogo-nome">Subway Surfers</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/offroad-outlaws&nome=Offroad Outlaws">
+                    <img src="https://play-lh.googleusercontent.com/9X8w7Y6vZ5x4W3y2V1w0U9t8S7r6Q5pO4n3M2l1K0jI=s512" alt="Offroad Outlaws" class="jogo-img">
+                    <div class="jogo-nome">Offroad Outlaws</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/bowmasters&nome=Bowmasters">
+                    <img src="https://play-lh.googleusercontent.com/8V9zX7Y6W5vZ4x3Y2w1X0v9Z8x7Y6w5X4v3Z2x1Y0w=s512" alt="Bowmasters" class="jogo-img">
+                    <div class="jogo-nome">Bowmasters</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/angry-birds-2&nome=Angry Birds 2">
+                    <img src="https://play-lh.googleusercontent.com/8J5W0Z9X7Y6Z5W4v3X2z1Y0b9X8w7Z6v5Y4x3W2v1=s512" alt="Angry Birds 2" class="jogo-img">
+                    <div class="jogo-nome">Angry Birds 2</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/toca-life-world&nome=Toca Life World">
+                    <img src="https://play-lh.googleusercontent.com/7Z9x8Y7w6X5vZ4x3Y2w1X0v9Z8x7Y6w5X4v3Z2x1Y0w=s512" alt="Toca Life World" class="jogo-img">
+                    <div class="jogo-nome">Toca Life World</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/bad-piggies&nome=Bad Piggies">
+                    <img src="https://play-lh.googleusercontent.com/6nT2qQ8YbK9xZ9kGqXz9wX7Y9vZ8xQw=s512" alt="Bad Piggies" class="jogo-img">
+                    <div class="jogo-nome">Bad Piggies</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/five-nights-at-freddys&nome=Five Nights at Freddy's">
+                    <img src="https://play-lh.googleusercontent.com/5z9x8Y7w6X5vZ4x3Y2w1X0v9Z8x7Y6w5X4v3Z2x1Y0w=s512" alt="Five Nights at Freddy's" class="jogo-img">
+                    <div class="jogo-nome">Five Nights at Freddy's</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/shadow-fight-2&nome=Shadow Fight 2">
+                    <img src="https://play-lh.googleusercontent.com/9X8w7Y6vZ5x4W3y2V1w0U9t8S7r6Q5pO4n3M2l1K0jI=s512" alt="Shadow Fight 2" class="jogo-img">
+                    <div class="jogo-nome">Shadow Fight 2</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/traffic-rider&nome=Traffic Rider">
+                    <img src="https://play-lh.googleusercontent.com/ANvVq3XzYJ5jO8aHdK7vZ9xW7vY9zX5bQ9xX7Z9lW8w=s512" alt="Traffic Rider" class="jogo-img">
+                    <div class="jogo-nome">Traffic Rider</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/banana-kong&nome=Banana Kong">
+                    <img src="https://play-lh.googleusercontent.com/Uo5J_2QfXzWbVqKzGtL9kGqXz9L9pQz9wX7Y9vZ8xQw=s512" alt="Banana Kong" class="jogo-img">
+                    <div class="jogo-nome">Banana Kong</div>
+                </a>
+            </div>
+
+            <div class="jogo">
+                <a href="jogo.html?url=https://www.madkidgames.com/full/street-racing-3d&nome=Street Racing 3D">
+                    <img src="https://play-lh.googleusercontent.com/6nT2qQ8YbK9xZ9kGqXz9wX7Y9vZ8xQw=s512" alt="Street Racing 3D" class="jogo-img">
+                    <div class="jogo-nome">Street Racing 3D</div>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>🎮 Arena Jogos — Jogue direto no navegador, grátis! 💛</p>
+    </footer>
+
+    <script>
+        // Contador de acessos
+        let visitas = localStorage.getItem('contadorVisitas') || 0;
+        visitas = parseInt(visitas) + 1;
+        localStorage.setItem('contadorVisitas', visitas);
+        document.getElementById('contador-numero').textContent = visitas;
+    </script>
+
+</body>
+</html>
